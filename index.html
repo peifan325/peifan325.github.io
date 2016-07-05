@@ -1,0 +1,580 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/iconfont.css">
+    <link rel="stylesheet" href="css/normalize.css">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            margin:0;
+            padding:0;
+            font-family: '微软雅黑';
+        }
+        ul,ol {
+            list-style: none;
+            margin:0;
+            padding:0;
+        }
+        a {
+            text-decoration: none;
+        }
+        h1,h2,h3,h4,h5,h6,p {
+            margin:0;
+            padding:0;
+        }
+        .public-btn {
+            display: inline-block;
+            padding:5px 10px;
+            border:none;
+            color:#fff;
+            cursor: pointer;
+            background-color: #08B4DA;
+        }
+        .public-btn:hover {
+            background-color: #0898b7;
+        }
+        .clearfix:after {
+            content:'';
+            display: block;
+            clear:both;
+        }
+        .wrap {
+            width: 1100px;
+            margin: 0 auto;
+        }
+        .sidebar {
+            position:fixed;
+            top:0;
+            bottom:0;
+
+            text-align: right;
+            width:280px;
+            background-color: #08B4DA;
+        }
+        .content-main {
+            margin-left: 280px;
+            padding:30px;
+            background-color: #EDEDED;
+        }
+
+        .skill-list,.project-list,.works-list,.my-info {
+            display: none;
+        }
+        .skill-list.active,.project-list.active,.works-list.active,.my-info.active {
+            display: block;
+        }
+        /*------------header-------------*/
+        .side-header {
+            padding:40px 30px;
+            letter-spacing: 2px;
+        }
+        .side-header h1 {
+            letter-spacing: 4px;
+        }
+        .side-header h4 {
+            margin-top: 10px;
+        }
+        .side-header a {
+            color:#000;
+        }
+        .side-menu {
+            margin-top:10px;
+            margin-bottom: 10px;
+        }
+        .side-menu-item {
+
+        }
+
+        .side-menu-item .menu-link {
+            display: block;
+            padding-right:30px;
+            height: 50px;
+            line-height: 50px;
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #fff;
+            background-color: rgba(0,0,0,.5);
+            border-left: 0 solid transparent;
+            transition: all .3s;
+        }
+        .side-menu-item .menu-link:hover {
+            color:#08B4DA;
+            background-color: #EDEDED;
+            border-left:10px solid #08B4DA
+        }
+        .side-menu-item .menu-link:hover .iconfont {
+            opacity: 1;
+        }
+        .side-menu-item.active .menu-link:hover {
+            color:#08B4DA;
+        }
+
+        .side-menu-item.active .menu-link {
+            color:#000;
+            background-color: #EDEDED;
+            border-left:10px solid #08B4DA;
+        }
+
+        .side-menu-item .menu-link .iconfont {
+            transition: opacity .3s;
+        }
+        .side-menu-item.active .menu-link .iconfont {
+            opacity: 1;
+        }
+
+        .side-footer {
+            text-align: left;
+            padding:30px;
+            background-color: rgba(0,0,0,.2);
+        }
+        .side-more {
+            padding: 10px 0;
+            border-bottom: 1px solid;
+            margin-bottom: 20px;
+        }
+        .side-more-item {
+            padding:5px 0;
+        }
+        .side-more-item a {
+            color: #000;
+        }
+        .side-more-item a:hover {
+            color: #000;
+            text-decoration: underline;
+        }
+        /*------------content--------------*/
+        .public-header {
+            padding-top:60px;
+            padding-bottom: 20px;
+            text-align: center;
+        }
+        .public-line {
+            display: inline-block;
+            vertical-align: middle;
+            width:300px;
+            border-top:2px solid #08B4DA;
+        }
+        .public-title {
+            margin:0 36px;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+        .public-txt-key {
+            font-size: 1.1rem;
+            color:#08B4DA;
+        }
+        .skill-item {
+            border: 1px solid;
+            margin-bottom: 20px;
+        }
+
+        .skill-item-head,.skill-item-info {
+            float:left;
+        }
+        .title-left,.title-right {
+            padding:0 20px;
+        }
+        .title-left {
+            padding-left: 80px;
+            text-align: left;
+        }
+        .title-right {
+            padding-right: 80px;
+            text-align: right;
+        }
+        .pos-left {
+            margin-left: -100%;
+            position: relative;
+            left:-80px;
+            background-color: #08B4DA;
+        }
+        .pos-right {
+            margin-left: -60px;
+            position: relative;
+            left: 80px;
+            background-color: #ffff00;
+        }
+        .skill-item-head {
+            /*background-color: #777;*/
+            writing-mode: vertical-lr;
+
+            width: 60px;
+            height: 180px;
+            line-height: 60px;
+            text-align: center;
+            letter-spacing: 10px;
+            font-size: 1.2rem;
+
+        }
+        .skill-item-info {
+            width: 100%;
+        }
+        .skill-item-info p {
+            margin:0;
+            line-height: 2.2rem;
+        }
+
+        .skill-footer {
+            margin-top: 40px;
+        }
+
+        /*------------project--------------*/
+        .works-content {
+            padding-top:10px;
+        }
+        .works-item {
+            padding:20px 0;
+        }
+        .works-item-txt {
+            list-style:square inside;
+            line-height: 30px;
+            margin-left:20px;
+        }
+        .works-item-subhead {
+            margin-bottom: 10px;
+            color:#777;
+        }
+        .works-item-btn {
+            float:right;
+        }
+        .works-item-btn .public-line {
+            border-color: #ccc;
+            margin-right:50px;
+            width:400px;
+        }
+        .works-img {
+            display: block;
+            float:right;
+            width: 210px;
+            height:160px;
+            padding:5px;
+            border:1px solid #ccc;
+            border-radius: 3px;
+            transition: all 0.3s;
+        }
+        .works-img img {
+            display: block;
+            width: 100%;
+            height:100%;
+        }
+        .works-img:hover {
+            box-shadow: 3px 2px 5px #777;
+        }
+        .info-content {
+            perspective:900px;
+        }
+        .alert:hover {
+            transform:rotateY(180deg) ;
+        }
+        .alert {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            margin-top: 20px;
+            font-size: 20px;
+            transition: transform .5s;
+        }
+        .alert-danger {
+            color: #fff;
+            background-color: #d9534f;
+            border-color: #d43f3a;
+        }
+        .alert-info {
+            color: #fff;
+            background-color: #5bc0de;
+            border-color: #46b8da;
+        }
+        .alert-success {
+            color: #fff;
+            background-color: #5cb85c;
+            border-color: #4cae4c;
+        }
+        .alert-warning {
+            color: #fff;
+            background-color: #f0ad4e;
+            border-color: #eea236;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="content-main">
+            <div class="skill-list active">
+                <div class="public-header">
+                    <i class="public-line"></i>
+                    <span class="public-title">技能清单</span>
+                    <i class="public-line"></i>
+                </div>
+                <ul class="skill-content">
+                    <li class="skill-item title-left clearfix">
+                        <div class="skill-item-info">
+                            <p>能熟练使用 <span class="public-txt-key">HTML5</span> 和 <span class="public-txt-key">CSS3</span> 编写符合 W3C 规范的页面，掌握浮动、定位、盒模型、BFC 等核心概念以及常见的布局方式。</p>
+                            <p>熟悉原生 <span class="public-txt-key">JavaScript</span>，掌握事件模型、DOM 操作、Ajax、闭包、原型链、继承等相关概念的原理和使用方法</p>
+                            <p>能使用原生 JavaScript 根据需求编写类库组件</p>
+                        </div>
+                        <div class="skill-item-head pos-left">基 础</div>
+                    </li>
+                    <li class="skill-item title-right clearfix">
+                        <div class="skill-item-info">
+                            <p>熟悉模块化与面向对象的方式编程，能使用 <span class="public-txt-key">Require.js</span> 进行模块化开发</p>
+                            <p>了解基本的 <span class="public-txt-key">Node.js</span> 操作，能搭建后端环境实现数据 mock 与接口测试</p>
+                            <p>熟悉基本的前端 <span class="public-txt-key">兼容性</span> 处理、 <span class="public-txt-key">性能优化</span> 知识，并加以应用</p>
+                            <p>能熟练使用 <span class="public-txt-key">jQuery</span> 进行开发，实现常见的页面效果</p>
+                            <p>熟练使用 <span class="public-txt-key">Bootstrap</span> 快速搭建页面</p>
+                        </div>
+                        <div class="skill-item-head pos-right">进 阶</div>
+                    </li>
+                    <li class="skill-item title-left clearfix">
+                        <div class="skill-item-info">
+                            <p>能熟练使用 <span class="public-txt-key">Chrome</span> 开发者工具调试和辅助开发</p>
+                            <p>能熟练使用 <span class="public-txt-key">WebStorm</span> 进行项目开发</p>
+                            <p>使用 <span class="public-txt-key">git flow</span> 管理开发流程</p>
+                            <p>熟悉 <span class="public-txt-key">Photoshop</span> 的使用，能进行简单的图片处理及切图操作</p>
+                            <p>熟悉 <span class="public-txt-key">Sass</span> 预处理工具及 <span class="public-txt-key">Gulp</span> 自动化工具的使用</p>
+                        </div>
+                        <div class="skill-item-head pos-left">工 具</div>
+                    </li>
+                </ul>
+                <div class="skill-footer">
+                    <canvas id="myCanvas" width="760" height="190">
+                        您的浏览器不支持canvas！
+                    </canvas>
+                </div>
+            </div>
+            <div class="works-list">
+                <div class="public-header">
+                    <i class="public-line"></i>
+                    <span class="public-title">作品列表</span>
+                    <i class="public-line"></i>
+                </div>
+                <ul class="works-content">
+                    <li class="works-item clearfix">
+                        <div class="works-item-btn">
+                            <div class="public-line"></div>
+                            <a class="public-btn" href="https://github.com/peifan325/Demo/tree/master/FMplayer" target="_blank">代码</a>
+                            <a class="public-btn" href="http://peifan325.applinzi.com/FMplayer/" target="_blank">演示</a>
+                        </div>
+
+                        <h3 class="works-item-title">FMPlayer</h3>
+                        <p class="works-item-subhead"> 饥人谷前端毕业设计</p>
+
+                        <a class="works-img"  href="http://peifan325.applinzi.com/FMplayer/" target="_blank">
+                            <img src="image/1.jpg" alt="">
+                        </a>
+
+                        <ul class="works-item-txt">
+                            <li>
+                                <p>采用了HTML5的 <span class="public-txt-key">Audio</span> 标签,做音乐控制器</p>
+                            </li>
+                            <li>
+                                <p><span class="public-txt-key">jQuery Ajax</span> 获取音乐及歌词文件，歌词转换为<span class="public-txt-key">JSON</span>对象以方便输出。</p>
+                            </li>
+                            <li>
+                                <p>使用了 <span class="public-txt-key">拖动模块、jQuery animate</span> 动画，使界面更友好。</p>
+                            </li>
+                        </ul>
+
+                    </li>
+                    <li class="works-item clearfix">
+                        <div class="works-item-btn">
+                            <div class="public-line"></div>
+                            <a class="public-btn" href="https://github.com/peifan325/Demo/tree/master/BootStrap" target="_blank">代码</a>
+                            <a class="public-btn" href="http://peifan325.applinzi.com/BootStrap/" target="_blank">演示</a>
+                        </div>
+
+                        <h3 class="works-item-title">现代浏览器博物馆</h3>
+                        <p class="works-item-subhead"> 基于Bootstrap的页面搭建</p>
+
+                        <a class="works-img"  href="http://peifan325.applinzi.com/BootStrap/" target="_blank">
+                            <img src="image/2.jpg" alt="">
+                        </a>
+
+                        <ul class="works-item-txt">
+                            <li>
+                                <p>采用 <span class="public-txt-key">Bootstrap</span> 框架</p>
+                            </li>
+                            <li>
+                                <p>实现 导航菜单 轮播 tab标签页 下拉菜单等网页常见效果</p>
+                            </li>
+                        </ul>
+
+                    </li>
+                    <li class="works-item clearfix">
+                        <div class="works-item-btn">
+                            <div class="public-line"></div>
+                            <a class="public-btn" href="https://github.com/peifan325/Demo/tree/master/BootStrapp" target="_blank">代码</a>
+                            <a class="public-btn" href="http://peifan325.applinzi.com/BootStrapp/" target="_blank">演示</a>
+                        </div>
+                        <h3 class="works-item-title">仿Bootstrap页面</h3>
+                        <p class="works-item-subhead"> html、css 布局</p>
+
+                        <a class="works-img"  href="http://peifan325.applinzi.com/BootStrapp/" target="_blank">
+                            <img src="image/2011.jpg" alt="">
+                        </a>
+
+                        <ul class="works-item-txt">
+                            <li>
+                                <p>封装了 <span class="public-txt-key">曝光加载、轮播、瀑布流、加载更多</span> 等模块。</p>
+                            </li>
+                            <li>
+                                <p>使用requirejs管理模块依赖关系，r.js压缩合并js文件。</p>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="works-item clearfix">
+                        <div class="works-item-btn">
+                            <div class="public-line"></div>
+                            <a class="public-btn" href="https://github.com/peifan325/Demo/tree/master/Weaterfall" target="_blank">代码</a>
+                            <a class="public-btn" href="http://peifan325.applinzi.com/Weaterfall/" target="_blank">演示</a>
+                        </div>
+                        <h3 class="works-item-title">瀑布流布局信息展示</h3>
+                        <p class="works-item-subhead"> 瀑布流</p>
+
+                        <a class="works-img"  href="http://peifan325.applinzi.com/Weaterfall/" target="_blank">
+                            <img src="image/3.jpg" alt="">
+                        </a>
+
+                        <ul class="works-item-txt">
+                            <li>
+                                <p>瀑布流：对宽度固定，高度不定的元素进行布局的一种方式。</p>
+                            </li>
+
+                        </ul>
+                    </li>
+
+                    <li class="works-item clearfix">
+                        <div class="works-item-btn">
+                            <div class="public-line"></div>
+                            <a class="public-btn" href="https://github.com/peifan325/Demo/tree/master/Carousel-Modules" target="_blank">代码</a>
+                            <a class="public-btn" href="http://peifan325.applinzi.com/Carousel-Modules/Css3.html" target="_blank">演示</a>
+                        </div>
+                        <h3 class="works-item-title">几种轮播模块的封装</h3>
+                        <p class="works-item-subhead"> 轮播模块封装</p>
+
+                        <a class="works-img"  href="http://peifan325.applinzi.com/Carousel-Modules/Css3.html" target="_blank">
+                            <img src="image/2014.jpg" alt="">
+                        </a>
+
+                        <ul class="works-item-txt">
+                            <li><p>
+                                封装了
+                                <a href="http://peifan325.applinzi.com/Carousel-Modules/threefadeIn.html"><span class="public-txt-key">淡入淡出</span></a>、
+                                <a href="http://peifan325.applinzi.com/Carousel-Modules/Roll.html"><span class="public-txt-key">无缝滚动</span></a>、
+                                <a href="http://peifan325.applinzi.com/Carousel-Modules/fullWindow.html"><span class="public-txt-key">全屏轮播</span></a>、
+                                <a href="http://peifan325.applinzi.com/Carousel-Modules/Css3.html"><span class="public-txt-key">CSS3轮播</span></a>
+
+                            </p></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="my-info">
+                <div class="public-header">
+                    <i class="public-line"></i>
+                    <span class="public-title">个人信息</span>
+                    <i class="public-line"></i>
+                </div>
+                <div class="info-content">
+                    <div class="alert alert-success" role="alert">男</div>
+                    <div class="alert alert-info" role="alert">大专</div>
+                    <div class="alert alert-warning" role="alert">应用电子专业</div>
+                    <div class="alert alert-danger" role="alert">...</div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="sidebar">
+            <div class="side-header">
+                <h1>尹配环</h1>
+                <h4>应聘前端工程师</h4>
+                <a href="tel:18037610836">电话：18037610836</a>
+            </div>
+            <ul class="side-menu">
+                <li class="side-menu-item menu active"><a href="#" class="menu-link"><i class="icon-opac-0 iconfont icon-dengpao icon-2x"></i> 技能清单</a></li>
+                <!--<li class="side-menu-item"><a href="#" class="menu-link"><i class="icon-opac-0 iconfont icon-yingyonglei icon-2x"></i> 项目经历</a></li>-->
+                <li class="side-menu-item menu"><a href="#" class="menu-link"><i class="icon-opac-0 iconfont icon-liebiao icon-2x"></i> 作品列表</a></li>
+                <li class="side-menu-item menu"><a href="#" class="menu-link"><i class="icon-opac-0 iconfont icon-yingyonglei icon-2x"></i> 个人信息</a></li>
+            </ul>
+            <div class="side-footer">
+                <p class="side-more"><i class="iconfont icon-liebiao"></i> 更多信息</p>
+                <p class="side-more-item"><i class="iconfont icon-github"></i> <a href="https://github.com/peifan325/Demo" target="_blank">源代码</a></p>
+                <p class="side-more-item"><i class="iconfont icon-blog"></i> <a href="http://leanote.com/blog/56f884fbab644122de0018f4" target="_blank">技术博客</a></p>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="js/lib/jquery.js"></script>
+    <script>
+        //鼠标点击菜单事件
+        var content = $('.content-main'),
+                skill = $('.skill-list'),
+                protject = $('.project-list'),
+                work = $('.work-list');
+
+        $('.side-menu').on('click','.side-menu-item',function () {
+
+            event.preventDefault();
+            var target = $(this);
+            var index = target.index();
+            //激活内容项
+            content.children().removeClass('active').eq(index).addClass('active');
+
+            //激活菜单项
+            target.siblings().removeClass('active');
+            target.addClass('active');
+
+        });
+
+//        myCanvas
+        var canvas = $('#myCanvas').get(0);
+
+        if (canvas.getContext) {
+            var ctx = canvas.getContext('2d');
+
+            cricle(95,95,60,0.9,0.75,"#08b4da","HTML");
+            cricle(95+190,95,60,0.95,0.75,"#08b4da","CSS");
+            cricle(95+190*2,95,60,1,0.75,"#08b4da","jQuery");
+            cricle(95+190*3,95,60,0.1,0.75,"#08b4da","JS");
+
+        }
+        function cricle(x,y,r,start,end,color,txt) {
+            ctx.beginPath();
+            ctx.arc(x,y,r,Math.PI*2*start,Math.PI*2*end);
+            ctx.lineWidth = 15.0;
+            ctx.strokeStyle = color;
+
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.arc(x,y,r-10,0,Math.PI*2);
+            ctx.fillStyle = "#ccc";
+            ctx.fill();
+
+            ctx.beginPath();
+            ctx.arc(x,y,r-15,0,Math.PI*2);
+            ctx.lineWidth = 1.0;
+            ctx.strokeStyle = "#777";
+            ctx.stroke();
+
+            ctx.font = "Bold 20px Arial";
+            ctx.textAlign = "center";
+            ctx.fillStyle = "#008600";
+            ctx.fillText(txt, x, y+8);
+
+        }
+
+
+
+    </script>
+
+</body>
+</html>
