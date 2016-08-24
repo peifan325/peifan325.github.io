@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>七巧板</title>
+	<link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+	<canvas id="myCanvas" width="1024" height="768">
+		您的浏览器不支持Canvas，请更换浏览器测试。
+	</canvas>
+
+<script src="js/script.js"></script>
+<script>
+
+	var canvas = document.getElementById('myCanvas');
+	var context = canvas.getContext('2d');
+	var obj = [
+		{p:[{x:0,y:0},{x:250,y:250},{x:500,y:0}],color:"#33cc33"},
+		{p:[{x:0,y:0},{x:250,y:250},{x:0,y:500}],color:"#336699"},
+		{p:[{x:0,y:500},{x:125,y:375},{x:250,y:500}],color:"#333366"},
+		{p:[{x:125,y:375},{x:250,y:250},{x:375,y:375},{x:250,y:500}],color:"#FFCC99"},
+		{p:[{x:250,y:250},{x:375,y:125},{x:375,y:375}],color:"red"},
+		{p:[{x:500,y:0},{x:500,y:250},{x:375,y:375},{x:375,y:125}],color:"blue"},
+		{p:[{x:500,y:250},{x:250,y:500},{x:500,y:500}],color:"green"},
+	];
+
+
+	for (var i=0; i<obj.length;i++) {
+		drow(context,obj[i]);
+	}
+
+	function drow(ctx,o) {
+		var arr = o.p,
+				color = o.color;
+
+		ctx.beginPath();
+		for (var i=0; i<arr.length; i++) {
+			if (i===0) {
+				ctx.moveTo(arr[i].x,arr[i].y);
+			} else {
+				ctx.lineTo(arr[i].x,arr[i].y);
+			}
+		}
+		ctx.closePath();
+		ctx.fillStyle = color;
+		ctx.fill();
+	}
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>轮播</title>
+    <link rel="stylesheet" href="css/CarouselRoll.css">
+</head>
+<body>
+<div class="ct">
+    <ul class="Js_carouselFn carousel clearfix">
+        <li class="item">
+            <a href="#">
+                <img src="img/1.jpg" alt="">
+            </a>
+        </li>
+        <li class="item">
+            <a href="#">
+                <img src="img/2.jpg" alt="">
+            </a>
+        </li>
+        <li class="item">
+            <a href="#">
+                <img src="img/3.jpg" alt="">
+            </a>
+        </li>
+    </ul>
+    <ul class="bullet clearfix">
+        <li class="active"></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+
+<br>
+<div class="ct">
+    <ul class="Js_carouslModule carousel clearfix">
+        <li class="item">
+            <a href="#">
+                <img src="img/4.jpg" alt="">
+            </a>
+        </li>
+        <li class="item">
+            <a href="#">
+                <img src="img/5.jpg" alt="">
+            </a>
+        </li>
+        <li class="item">
+            <a href="#">
+                <img src="img/1.jpg" alt="">
+            </a>
+        </li>
+    </ul>
+    <ul class="bullet clearfix">
+        <li class="active"></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+
+<script src="js/jquery.js"></script>
+<script src="js/CarouseljqueryFn.js"></script>
+<script src="js/CarouselModule.js"></script>
+<script>
+    $(function () {
+        //通过插件的方式启动所有轮播
+        $('.Js_carouselFn').carousel();
+
+        //方式2
+        //通过创建对象的方式启动所有轮播
+        new Carousel($('.Js_carouslModule'));
+    })
+
+</script>
+</body>
+</html>

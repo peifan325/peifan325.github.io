@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>跳动的小球</title>
+	<style>
+		#myCanvas {
+			border: 1px solid;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="myCanvas"></canvas>
+
+	<script>
+		var WINDOW_WIDTH = 1024;
+		var WINDOW_HEIGHT = 500;
+		var ball = {x:500,y:100,r:20,g:2,vx:-4,vy:-10,color:"#005588"};
+		window.onload = function(){
+
+			var canvas = document.getElementById('myCanvas');
+			var context = canvas.getContext('2d');
+
+			canvas.width = WINDOW_WIDTH;
+			canvas.height = WINDOW_HEIGHT;
+			
+			setInterval(function(){
+				rander(context);
+				update();
+			},50);
+		}
+
+		function update(){
+			ball.x += ball.vx;
+			ball.y += ball.vy;
+			ball.vy += ball.g;
+
+			if (ball.y >= WINDOW_HEIGHT - ball.r) {
+				ball.y = WINDOW_HEIGHT-ball.r;
+				ball.vy = -ball.vy*0.6;
+			}
+			if (ball.y <=0) {
+				ball.y = ball.r;
+				ball.vy = -ball.vy*0.6;
+			}
+			if (ball.x >= WINDOW_WIDTH - ball.r) {
+				ball.x = WINDOW_WIDTH-ball.r;
+				ball.vx = -ball.vx*0.6;
+			}
+			if (ball.x <= 0) {
+				ball.x = ball.r ;
+				ball.vx = -ball.vx*0.6;
+			}
+		}
+
+		function rander(ctx) {
+			ctx.clearRect(0,0,ctx.canvas.width,ctx.canvas.height);
+
+			ctx.fillStyle = ball.color;
+			ctx.beginPath();
+			ctx.arc(ball.x,ball.y,ball.r,0,2*Math.PI);
+			ctx.closePath();
+			ctx.fill();
+		}
+
+
+
+	</script>
+</body>
+</html>

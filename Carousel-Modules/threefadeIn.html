@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>threefadeIn</title>
+    <link rel="stylesheet" href="css/CarouselFadeIn.css">
+
+</head>
+<body>
+
+<div class="wrap">
+    <ul class="img-ct">
+        <li><a href="#"><img src="img/1.jpg" alt="0"></a></li>
+        <li><a href="#"><img src="img/2.jpg" alt="1"></a></li>
+        <li><a href="#"><img src="img/3.jpg" alt="2"></a></li>
+        <li><a href="#"><img src="img/4.jpg" alt="3"></a></li>
+    </ul>
+    <a href="#" class="arrow pre"><</a>
+    <a href="#" class="arrow next">></a>
+    <ul class="pointer">
+        <li class="active"></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+<div class="wrap">
+    <ul class="img-ct">
+        <li><a href="#"><img src="img/1.jpg" alt="0"></a></li>
+        <li><a href="#"><img src="img/2.jpg" alt="1"></a></li>
+        <li><a href="#"><img src="img/3.jpg" alt="2"></a></li>
+        <li><a href="#"><img src="img/4.jpg" alt="3"></a></li>
+    </ul>
+    <a href="#" class="arrow pre"><</a>
+    <a href="#" class="arrow next">></a>
+    <ul class="pointer">
+        <li class="active"></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+<div class="wrap">
+    <ul class="img-ct">
+        <li><a href="#"><img src="img/1.jpg" alt="0"></a></li>
+        <li><a href="#"><img src="img/2.jpg" alt="1"></a></li>
+        <li><a href="#"><img src="img/3.jpg" alt="2"></a></li>
+        <li><a href="#"><img src="img/4.jpg" alt="3"></a></li>
+    </ul>
+    <a href="#" class="arrow pre"><</a>
+    <a href="#" class="arrow next">></a>
+    <ul class="pointer">
+        <li class="active"></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js"></script>
+<script>
+//    $(autoPlay());
+
+
+    function a(imgIndex){
+        var clock;
+        var curIndex = 0;
+        var isLoad = false;
+
+        var $imgCt = $(".img-ct").eq(imgIndex);
+        var $parent = $imgCt.parents(".wrap");
+        var $pre = $parent.find(".pre");
+        var $next = $parent.find(".next");
+        var $pointer = $parent.find(".pointer");
+        var imgCount = $imgCt.children().size();
+
+        function play(index){
+            if (isLoad) return;
+            isLoad = true;
+            $imgCt.children().eq(curIndex).fadeOut(500);
+            $imgCt.children().eq(index).fadeIn(500,function () {
+                curIndex = index;
+                isLoad = false;
+            });
+            $pointer.children().removeClass("active").eq(index).addClass("active");
+        }
+        function playNext() {
+            play((curIndex + 1)%imgCount);
+        }
+        function playPre() {
+            play((curIndex - 1 + imgCount)%imgCount);
+        }
+        function autoPlay() {
+            clock = setInterval(playNext,2000);
+        }
+        function stopAuto() {
+            clearInterval(clock);
+        }
+        $pre.on("click",function (e) {
+            playPre();
+        });
+        $next.on("click",function (e) {
+            playNext();
+        });
+        $pointer.on("click","li",function (e) {
+            var idx = $(this).index();
+            play(idx);
+        });
+
+        return {
+            'play':play,
+            'playNext':playNext,
+            'playPre':playPre,
+            'autoPlay':autoPlay,
+            'stopAuto':stopAuto
+        }
+    }
+
+    var $imgCt = $(".img-ct");
+    $imgCt.each(function (index, el) {
+        var temp = a(index); //var temp = a(index);
+        temp.autoPlay();
+    });
+
+
+</script>
+</body>
+</html>
