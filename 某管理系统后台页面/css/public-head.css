@@ -1,0 +1,56 @@
+body {
+	font-family: "微软雅黑";
+	font-size: 12px;
+	color:#333333;
+}
+body a {
+	text-decoration: none;
+	color:#333333;
+}
+.public-head {
+	height:56px;
+	overflow: hidden;
+	background-color: #2189bf;
+}
+.public-head > .container {}
+.container > .public-head-logo {
+	float:left;
+	width:36px;
+	height:36px;
+	margin:10px 50px;
+	background: url(../img/public-logo.png);
+}
+.container > .search-box {
+	position: relative;
+	float:right;
+	width:314px;
+	height:28px;
+	margin-top:14px;
+	margin-right: 20px;
+	border-radius: 28px;
+	overflow: hidden;
+}
+.container > .search-box > form > a > i.iconfont {
+	position: absolute;
+	top:5px;
+	left:10px;
+}
+.container > .search-box > form {
+	width:100%;
+	height:100%;
+}
+.container > .search-box > form > #search-box {
+	box-sizing: border-box;
+	width:100%;
+	height:100%;
+	padding-left:30px;
+	border:none;
+}
+.container > .login {
+	float:right;
+	margin-right:92px;
+	margin-top: 20px;
+}
+.container > .login > a {
+	color:#fff;
+}
